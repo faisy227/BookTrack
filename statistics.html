@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/stats.css">
+  
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><span class="icon-book"></span> <span>BookTrack</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon-dashboard"></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="library.html" class="menu-item">
+                <span class="icon-library"></span>
+                <span>My Library</span>
+            </a>
+            <a href="reading-goals.html" class="menu-item">
+                <span class="icon-goals"></span>
+                <span>Reading Goals</span>
+            </a>
+            <a href="statistics.html" class="menu-item active">
+                <span class="icon-stats"></span>
+                <span>Statistics</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="icon-settings"></span>
+                <span>Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <h4>Jane Doe</h4>
+                    <p>Premium Member</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Reading Dashboard</h1>
+                <p>Track your reading progress and discover new books</p>
+            </div>
+            <div class="header-right">
+                
+                <div class="notifications">
+                    <span class="icon-bell"></span>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="sidebar-toggle" id="sidebarToggle">
+                    <span class="icon-book"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Stats Cards -->
+            <div class="stats-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Books Read</h3>
+                        <div class="value">142</div>
+                    </div>
+                    <div class="card-icon">
+                        <span class="icon-book"></span>
+                    </div>
+                </div>
+                <div class="change positive">
+                    +12% from last month
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Pages Read</h3>
+                        <div class="value">34,521</div>
+                    </div>
+                    <div class="card-icon">
+                        <span class="icon-library"></span>
+                    </div>
+                </div>
+                <div class="change positive">
+                    +8% from last month
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Reading Streak</h3>
+                        <div class="value">28 days</div>
+                    </div>
+                    <div class="card-icon">
+                        <span class="icon-goals"></span>
+                    </div>
+                </div>
+                <div class="change negative">
+                    -5 days from last month
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Avg. Rating</h3>
+                        <div class="value">4.2</div>
+                    </div>
+                    <div class="card-icon">
+                        <span class="icon-star"></span>
+                    </div>
+                </div>
+                <div class="change positive">
+                    +0.3 from last month
+                </div>
+            </div>
+
+          <!-- Reading Goals -->
+            <div class="reading-goals">
+                <div class="section-header">
+                    <h2>Reading Goals</h2>
+                    <a href="#" id="showGoalsBtn">Set Goals <span class="icon-chevron"></span></a>
+                </div>
+              <div class="goal-card">
+                    <h3>2023 Reading Challenge</h3>
+                    <div class="goal-stats">
+                        <div class="goal-stat">
+                            <h4>Books Read</h4>
+                            <p class="all-books">24/36</p>
+                        </div>
+                        <div class="goal-stat">
+                            <h4>Pages Read</h4>
+                            <p class="pages">8,421/15,000</p>
+                        </div>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="goal-progress-fill"></div>
+                    </div>
+                    <div class="goal-progress-text">
+                        <span class="percent">72% completed</span>
+                        <span>4 months left</span>
+                    </div>
+                    <div class="goal-actions">
+                        <button class="goal-btn">Update Goal</button>
+                        <button class="goal-btn outline">Share</button>
+                    </div>
+                </div>
+            <!-- Reading Progress -->
+            <div class="reading-progress">
+                <div class="section-header">
+                    <h2>Reading Progress</h2>
+                    <!-- <a href="#">Details <span class="icon-chevron"></span></a> -->
+                </div>
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <h4>This Month</h4>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill pink"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <h4>This Year</h4>
+                            <span>45%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill purple"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <h4>All Time</h4>
+                            <span>30%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill green"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <div class="section-header">
+                    <h2>Recent Activity</h2>
+                    <!-- <a href="#">See All <span class="icon-chevron"></span></a> -->
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <span class="icon-book"></span>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Finished reading "The Midnight Library"</h4>
+                            <p>You completed this book with a rating of 4.5</p>
+                            <div class="activity-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <span class="icon-goals"></span>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Weekly reading goal achieved</h4>
+                            <p>You read 320 pages this week</p>
+                            <div class="activity-time">1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <span class="icon-library"></span>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Added 3 new books to your library</h4>
+                            <p>"Project Hail Mary", "Dune", "Atomic Habits"</p>
+                            <div class="activity-time">3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </main>
+
+     <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Modal Content -->
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <h2><i class="icon-goal"></i> Reading Goals</h2>
+            <button class="close-btn" id="closeBtn"><i class="icon-close"></i></button>
+        </div>
+
+        <div class="goal-card">
+            <h3>2023 Reading Challenge</h3>
+            <form class="goal-form" id="goalForm">
+                <!-- Goal Type -->
+                <div class="goal-type-selector">
+                    <div class="goal-type">
+                        <input type="radio" id="goal-books" name="goalType" value="books" checked>
+                        <label for="goal-books"><i class="icon-book"></i> Books</label>
+                    </div>
+                    <div class="goal-type">
+                        <input type="radio" id="goal-pages" name="goalType" value="pages">
+                        <label for="goal-pages"><i class="icon-pages"></i> Pages</label>
+                    </div>
+                </div>
+
+                <!-- Goal Target -->
+                <div class="form-group">
+                    <label for="goalTarget" class="goal-label">Target</label>
+                    <input type="number" id="goalTarget" class="goal-input" placeholder="Enter your target" min="1" required>
+                </div>
+
+                <!-- Time Period -->
+                <div class="time-period">
+                    <div class="form-group">
+                        <label for="startDate" class="goal-label">Start Date</label>
+                        <input type="date" id="startDate" class="goal-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate" class="goal-label">End Date</label>
+                        <input type="date" id="endDate" class="goal-input" required>
+                    </div>
+                </div>
+
+                <!-- Current Progress -->
+                <div class="form-group">
+                    <label for="currentProgress" class="goal-label">Current Progress (optional)</label>
+                    <input type="number" id="currentProgress" class="goal-input" placeholder="Where are you now?" min="0">
+                </div>
+
+                <!-- Progress Preview -->
+                <div class="progress-preview">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressText">0%</span>
+                        <span>Goal: <span id="goalTargetText">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-white-outline" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-white">Save Goal</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Previous Goals (optional section) -->
+        <div class="previous-goals">
+            <h3 style="color: var(--dark); margin-bottom: 15px;">Previous Goals</h3>
+            <div class="previous-goal">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <strong>2022 Reading Challenge</strong>
+                    <span>78% completed</span>
+                </div>
+                <div class="progress-bar" style="background-color: var(--gray);">
+                    <div class="progress-fill" style="background-color: var(--primary); width: 78%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #7f8c8d; margin-top: 5px;">
+                    <span>28/36 books</span>
+                    <span>Jan 1 - Dec 31, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/stats.js"></script>
+    <script src="assets/js/set-goals.js"></script>
+    <script>
+        // Minimal JavaScript only for sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.getElementById('mainContent').classList.toggle('expanded');
+        });
+    </script>
+</body>
+</html>

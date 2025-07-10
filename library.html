@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/library.css">
+  
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><span class="icon-book"></span> <span>BookTrack</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon-dashboard"></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="library.html" class="menu-item active">
+                <span class="icon-library"></span>
+                <span>My Library</span>
+            </a>
+            <a href="reading-goals.html" class="menu-item">
+                <span class="icon-goals"></span>
+                <span>Reading Goals</span>
+            </a>
+            <a href="statistics.html" class="menu-item">
+                <span class="icon-stats"></span>
+                <span>Statistics</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="icon-settings"></span>
+                <span>Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <h4>Jane Doe</h4>
+                    <p>Premium Member</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Reading Dashboard</h1>
+                <p>Track your reading progress and discover new books</p>
+            </div>
+            <div class="header-right">
+               
+                <div class="notifications">
+                    <span class="icon-bell"></span>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="sidebar-toggle" id="sidebarToggle">
+                    <span class="icon-book"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+           
+              <!-- Finsihed Reading -->
+            <div class="currently-reading">
+                <div class="section-header">
+                    <h2>Currently Reading</h2>
+                    <a href="#" id="showAddBookBtn">Add More <span class="icon-chevron"></span></a>
+                </div>
+                <div class="book-list current">
+
+
+
+                  
+
+                   
+
+                   
+                </div>
+            </div>
+
+            <!-- Currently Reading -->
+            <div class="currently-reading index">
+                <div class="section-header">
+                    <h2>Finsihed Reading</h2>
+                    <a href="#" id="showHistoryBtn">Add More <span class="icon-chevron"></span></a>
+                </div>
+                <div class="book-list finished">
+                  
+
+                   
+                </div>
+            </div>
+
+         
+            <!-- Recommendations -->
+            <div class="recommendations">
+                <div class="section-header">
+                    <h2>Recommended For You</h2>
+                    <!-- <a href="#">More <span class="icon-chevron"></span></a> -->
+                </div>
+                <div class="recommendation-list">
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-1"></div>
+                        <div class="recommendation-info">
+                            <h3>The Silent Patient</h3>
+                            <p>Alex Michaelides</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-2"></div>
+                        <div class="recommendation-info">
+                            <h3>Where the Crawdads Sing</h3>
+                            <p>Delia Owens</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-3"></div>
+                        <div class="recommendation-info">
+                            <h3>The Seven Husbands...</h3>
+                            <p>Taylor Jenkins Reid</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-4"></div>
+                        <div class="recommendation-info">
+                            <h3>Educated</h3>
+                            <p>Tara Westover</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-5"></div>
+                        <div class="recommendation-info">
+                            <h3>The Song of Achilles</h3>
+                            <p>Madeline Miller</p>
+                        </div>
+                    </div>
+                   
+                    <div class="recommendation-card">
+                        <div class="recommendation-cover rec-6"></div>
+                        <div class="recommendation-info">
+                            <h3>Circe</h3>
+                            <p>Madeline Miller</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div class="finsihed-modal">
+ <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Modal Content -->
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <h2 style="text-align: center;"><i class="icon-book"></i> Your Reading History</h2>
+            <button class="close-btn" id="closeBtn"><i class="icon-close"></i></button>
+        </div>
+
+        <!-- Stats Summary
+        <div class="stats-summary">
+            <h3>Your Reading Journey</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>Total Books</h4>
+                    <p>142</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Pages Read</h4>
+                    <p>34,521</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Avg. Rating</h4>
+                    <p>4.2</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Genres</h4>
+                    <p>12</p>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Book List -->
+        <div class="history-list">
+            
+        </div>
+    </div>
+    </div>
+   
+    <div class="currently-modal">
+         <!-- form Overlay -->
+    <div class="form-overlay" id="formOverlay"></div>
+
+    <!-- form Content -->
+    <div class="form-content" id="formContent">
+        <div class="form-header">
+            <h2><i class="icon-book"></i> Add New Book</h2>
+            <button class="close-btn" id="formcloseBtn"><i class="icon-close"></i></button>
+        </div>
+
+        <form class="add-book-form" id="addBookForm">
+            <!-- Cover Upload -->
+            <div class="cover-upload" id="coverUpload">
+                <i class="icon-upload"></i>
+                <p>Click to upload book cover</p>
+                <small>JPG, PNG (Max 5MB)</small>
+                <img id="coverPreview" alt="Book cover preview">
+                <input type="file" id="coverInput" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- Book Info -->
+            <div class="form-group full-width">
+                <label for="bookTitle">Book Title</label>
+                <input type="text" id="bookTitle" placeholder="Enter book title" required>
+            </div>
+
+            <div class="form-group half-width">
+                <label for="author">Author</label>
+                <input type="text" id="author" placeholder="Enter author name" required>
+            </div>
+
+            <div class="form-group half-width">
+                <label for="genre">Genre</label>
+                <select id="genre" required>
+                    <option value="">Select genre</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="sci-fi">Science Fiction</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="romance">Romance</option>
+                    <option value="biography">Biography</option>
+                    <option value="history">History</option>
+                    <option value="self-help">Self-Help</option>
+                    <option value="business">Business</option>
+                </select>
+            </div>
+
+            <div class="form-group half-width">
+                <label for="pages">Total Pages</label>
+                <input type="number" id="pages" placeholder="Enter total pages" min="1" required>>
+            </div>
+
+            <div class="form-group half-width">
+                <label for="currentPage">Current Page (if reading)</label>
+                <input type="number" id="currentPage" placeholder="Enter current page" min="0" required>>
+            </div>
+
+            <div class="form-group half-width">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate">
+            </div>
+
+            <div class="form-group half-width">
+                <label for="finishDate">Finish Date</label>
+                <input type="date" id="finishDate">
+            </div>
+
+            <div class="form-group half-width">
+                <label>Rating</label>
+                <div class="rating-input">
+                    <span>0</span>
+                    <div class="rating-stars">
+                        <span class="rating-star" data-value="1">★</span>
+                        <span class="rating-star" data-value="2">★</span>
+                        <span class="rating-star" data-value="3">★</span>
+                        <span class="rating-star" data-value="4">★</span>
+                        <span class="rating-star" data-value="5">★</span>
+                    </div>
+                    <input type="hidden" id="rating" value="0">
+                </div>
+            </div>
+
+            <div class="form-group half-width">
+                <label>Status</label>
+                <div class="status-options">
+                    <div class="status-option">
+                        <input type="radio" id="status-reading" name="status" value="reading" checked>
+                        <label for="status-reading">Reading</label>
+                    </div>
+                    <div class="status-option">
+                        <input type="radio" id="status-completed" name="status" value="completed">
+                        <label for="status-completed">Completed</label>
+                    </div>
+                    <div class="status-option">
+                        <input type="radio" id="status-plan" name="status" value="plan">
+                        <label for="status-plan">Plan to Read</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="notes">Notes</label>
+                <textarea id="notes" placeholder="Add your thoughts about the book..."></textarea>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <script src="assets/js/library.js"></script>
+   
+    <script>
+        // Minimal JavaScript only for sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.getElementById('mainContent').classList.toggle('expanded');
+        });
+    </script>
+</body>
+
+</html>
