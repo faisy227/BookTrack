@@ -9,6 +9,9 @@
     --success: #00b894;
     --warning: #fdcb6e;
     --danger: #d63031;
+     --light-gray: #f5f7fa;
+    --medium-gray: #e1e5eb;
+    --dark-gray: #6c757d;
 }
 
 * {
