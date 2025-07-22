@@ -212,14 +212,23 @@
         </div>
 
         <form class="add-book-form" id="addBookForm">
-            <!-- Cover Upload -->
-            <div class="cover-upload" id="coverUpload">
-                <i class="icon-upload"></i>
-                <p>Click to upload book cover</p>
-                <small>JPG, PNG (Max 5MB)</small>
-                <img id="coverPreview" alt="Book cover preview">
-                <input type="file" id="coverInput" accept="image/*" style="display: none;">
-            </div>
+
+            <!-- Updated -->
+              <div class="form-group">
+                        <label for="bookImage" class="form-label">Image URL</label>
+                        <input type="text" id="bookImage" class="form-control"
+                            placeholder="https://example.com/meal-image.jpg" required>
+
+                        <div class="image-upload-group" style="margin-top: 16px;">
+                            <div class="image-preview" id="imagePreview">
+                                <div class="image-placeholder">
+                                    <div class="image-placeholder-icon">📖</div>
+                                    <div>Image preview will appear here</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
             <!-- Book Info -->
             <div class="form-group full-width">
@@ -251,12 +260,12 @@
 
             <div class="form-group half-width">
                 <label for="pages">Total Pages</label>
-                <input type="number" id="pages" placeholder="Enter total pages" min="1" required>>
+                <input type="number" id="pages" placeholder="Enter total pages" min="1" required>
             </div>
 
             <div class="form-group half-width">
                 <label for="currentPage">Current Page (if reading)</label>
-                <input type="number" id="currentPage" placeholder="Enter current page" min="0" required>>
+                <input type="number" id="currentPage" placeholder="Enter current page" min="0" required>
             </div>
 
             <div class="form-group half-width">
