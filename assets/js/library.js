@@ -3,6 +3,8 @@ const showHistoryBtn = document.getElementById("showHistoryBtn");
 const modalOverlay = document.getElementById("modalOverlay");
 const modalContent = document.getElementById("modalContent");
 const closeBtn = document.getElementById("closeBtn");
+ const bookImage = document.getElementById('bookImage');
+const imagePreview = document.getElementById('imagePreview');
 
 showHistoryBtn.addEventListener("click", function () {
   modalOverlay.classList.add("active");
@@ -56,32 +58,15 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// Cover upload functionality
-const coverUpload = document.getElementById("coverUpload");
-const coverInput = document.getElementById("coverInput");
-const coverPreview = document.getElementById("coverPreview");
-
-coverUpload.addEventListener("click", function () {
-  coverInput.click();
-});
-
-coverInput.addEventListener("change", function (e) {
-  const file = this.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
- reader.onload = function (event) {
-  uploadedCover = event.target.result; // ✅ save it for later
-  coverPreview.src = event.target.result;
-  coverPreview.style.backgroundImage = `url('${event.target.result}')`;
-  coverPreview.style.display = "block";
-  coverUpload.querySelector("i").style.display = "none";
-  coverUpload.querySelector("p").style.display = "none";
-  coverUpload.querySelector("small").style.display = "none";
-};
-
-  reader.readAsDataURL(file);
-});
+// Image URL preview
+        bookImage.addEventListener('input', () => {
+            const imageUrl = bookImage.value.trim();
+            if (imageUrl) {
+                imagePreview.innerHTML = `<img src="${imageUrl}" alt="Meal preview" onerror="this.src=''; this.alt=''; this.parentElement.innerHTML='<div class=\'image-placeholder\'><div class=\'image-placeholder-icon\'>❌</div><div>Invalid image URL</div></div>'">`;
+            } else {
+                imagePreview.innerHTML = '<div class="image-placeholder"><div class="image-placeholder-icon">🍽️</div><div>Meal image preview will appear here</div></div>';
+            }
+        });
 
 // Rating stars functionality
 const ratingStars = document.querySelectorAll(".rating-star");
@@ -150,6 +135,7 @@ const selectedStatus = document.querySelector('input[name="status"]:checked');
     currentPages.value,
     totalPages.value,
     selectedStatus.value,
+    bookImage.value
   ];
 
   const allFieldsFilled = values.every((value) => !!value);
@@ -164,10 +150,7 @@ const selectedStatus = document.querySelector('input[name="status"]:checked');
     
     // Reset form
     addBookForm.reset();
-    coverPreview.style.display = "none";
-    coverUpload.querySelector("i").style.display = "block";
-    coverUpload.querySelector("p").style.display = "block";
-    coverUpload.querySelector("small").style.display = "block";
+    
     ratingStars.forEach((star) => star.classList.remove("active"));
     ratingValue.textContent = "0";
     ratingInput.value = "0";
@@ -190,13 +173,13 @@ const readData = () => {
   currentPages: currentPages.value,
   totalPages: totalPages.value,
   readingStatus: selectedStatus.value,
-  coverImage: uploadedCover, // ✅ include it
+  bookImage: bookImage.value // ✅ include it
 });
 
 
 // console.log("New data array:", data);
 // console.table(data);
-  localStorage.setItem("bookData", JSON.stringify(data));
+  localStorage.setItem("booksData", JSON.stringify(data));
   createBook();
 };
 
@@ -213,7 +196,7 @@ const createBook = () => {
 
       return `
         <div class="book-card">
-         <div class="book-cover book-${index + 1}" style="background-image: url('${item.coverImage}')">
+         <div class="book-cover book-${index + 1}" style="background-image: url('${item.bookImage}')">
             <div class="book-progress">
               <div class="book-progress-bar" style="width: ${bookProgress}%;"></div>
             </div>
@@ -237,7 +220,7 @@ const createBook = () => {
 
       return `
         <div class="book-card">
-         <div class="book-cover book-${index + 1}" style="background-image: url('${item.coverImage}')">
+         <div class="book-cover book-${index + 1}" style="background-image: url('${item.bookImage}')">
             <div class="book-progress">
               <div class="book-progress-bar" style="width: ${bookProgress}%;"></div>
             </div>
@@ -263,6 +246,6 @@ const createBook = () => {
 };
 
 (() => {
-    data = JSON.parse(localStorage.getItem("bookData") || []);
+    data = JSON.parse(localStorage.getItem("booksData") || []);
     createBook();
 })()
