@@ -4,12 +4,13 @@ const modalOverlay = document.getElementById("modalOverlay");
 const modalContent = document.getElementById("modalContent");
 const closeBtn = document.getElementById("closeBtn");
 const cancelBtn = document.getElementById("cancelBtn");
+const updateBtn = document.querySelector("#update");
 
-showGoalsBtn.addEventListener("click", function () {
+function openModal() {
   modalOverlay.classList.add("active");
   modalContent.classList.add("active");
   document.body.style.overflow = "hidden";
-});
+}
 
 function closeModal() {
   modalOverlay.classList.remove("active");
@@ -20,6 +21,9 @@ function closeModal() {
 modalOverlay.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 cancelBtn.addEventListener("click", closeModal);
+showGoalsBtn.addEventListener("click", openModal);
+updateBtn.addEventListener("click", openModal);
+
 
 // Close modal when pressing Escape key
 document.addEventListener("keydown", function (e) {
@@ -39,6 +43,7 @@ const allPages = document.querySelector(".pages");
 const percent = document.querySelector(".percent");
 const realProgressGoalFill = document.querySelector(".goal-progress-fill");
 const goalForm = document.getElementById("goalForm");
+
 // console.log(allBooks);
 
 goalForm.addEventListener("submit", function (e) {
