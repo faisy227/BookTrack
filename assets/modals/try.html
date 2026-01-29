@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+         :root {
+            --primary: #ff2d75;
+            --primary-light: #ff8cb3;
+            --primary-dark: #d4004e;
+            --secondary: #6c5ce7;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --gray: #dfe6e9;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Syne', sans-serif;
+        }
+        body{
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            padding: 50px;
+            background: var(--gray);
+        }
+        .link{
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 14px;
+        }
+        .reading-goals{
+            width: 100%;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+
+        }
+        .card{
+            padding: 10px;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 8px;
+        }
+        .section-header,
+        .read,
+        .buttons,
+        .stats,
+        .total{
+            display: flex;
+            justify-content: space-between;
+            padding-block: 10px;
+        }
+        .total{
+            padding-top: 0;
+        }
+        .read,
+        .stats{
+            color: var(--gray);
+            font-size: 12px;
+        }
+        .btn{
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+        }
+        .btn.filled{
+            color: var(--primary-dark);
+            background: white;
+        }
+        
+        .reading-progress{
+            background: rgba(255, 255, 255, 0.395);
+            width: 100%;
+            height: 10px;
+            border-radius: 20px;
+            position: relative;
+        }
+        .reading-progress::before{
+            content: "";
+            position: absolute;
+            /* use that width = */
+            width: 72%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background:white;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+  <section class="reading-goals">
+    <div class="section-header">
+        <h2>Reading Goals</h2>
+        <a href="#" class="link">Set Goals</a>
+    </div>
+    <section class="card">
+        <h2>2023 Reading Challenge</h2>
+        <div class="read">
+            <p>Books Read</p>
+            <p>Pages Read</p>
+        </div>
+         <div class="total">
+            <h2>24/36</h2>
+            <h2>8421/15,000</h2>
+        </div>
+        <div class="reading-progress"></div>
+          <div class="stats">
+            <p>72% completed</p>
+            <p>4 months left</p>
+        </div>
+        <div class="buttons">
+            <button class="btn filled">Update Goal</button>
+            <button class="btn">Share</button>
+        </div>
+    </section>
+  </section>
+
+
+</body>
+</html>

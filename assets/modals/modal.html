@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookTrack - Reading History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff2d75;
+            --primary-light: #ff8cb3;
+            --primary-dark: #d4004e;
+            --secondary: #6c5ce7;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --gray: #dfe6e9;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Syne', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Button Style */
+        .show-history-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .show-history-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 45, 117, 0.4);
+        }
+
+        .show-history-btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 90%;
+            max-width: 800px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            padding: 30px;
+        }
+
+        .modal-content.active {
+            right: 0;
+        }
+
+        /* Modal Header */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-header h2 i {
+            margin-right: 15px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+            transition: all 0.2s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background-color: var(--gray);
+            color: var(--primary);
+        }
+
+        /* Book List */
+        .history-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .history-item {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .history-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-cover {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .history-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .history-info {
+            padding: 15px;
+        }
+
+        .history-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .history-info p {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .history-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .history-rating {
+            color: var(--warning);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .history-date {
+            color: var(--dark);
+            opacity: 0.7;
+        }
+
+        /* Stats Summary */
+        .stats-summary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-summary::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .stats-summary h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        .stat-item p {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .empty-state i {
+            font-size: 60px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .history-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .history-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Icons (using Unicode characters as pseudo-elements) */
+        .icon-book:before {
+            content: "📖";
+        }
+
+        .icon-history:before {
+            content: "📅";
+        }
+
+        .icon-close:before {
+            content: "×";
+        }
+
+        .icon-star:before {
+            content: "★";
+        }
+
+        .icon-empty:before {
+            content: "📚";
+        }
+
+        /* Mock book covers */
+        .book-1 {
+            background-image: url('https://m.media-amazon.com/images/I/71tR2ZEgPYL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-2 {
+            background-image: url('https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-3 {
+            background-image: url('https://m.media-amazon.com/images/I/91BcD+UhwkL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-4 {
+            background-image: url('https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-5 {
+            background-image: url('https://m.media-amazon.com/images/I/71tR2ZEgPYL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-6 {
+            background-image: url('https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-7 {
+            background-image: url('https://m.media-amazon.com/images/I/91BcD+UhwkL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-8 {
+            background-image: url('https://m.media-amazon.com/images/I/71tR2ZEgPYL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-9 {
+            background-image: url('https://m.media-amazon.com/images/I/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg');
+        }
+
+        .book-10 {
+            background-image: url('https://m.media-amazon.com/images/I/91BcD+UhwkL._AC_UF1000,1000_QL80_.jpg');
+        }
+    </style>
+</head>
+<body>
+    <button class="show-history-btn" id="showHistoryBtn">
+        <i class="icon-history"></i> View Reading History
+    </button>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Modal Content -->
+    <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+            <h2 style="text-align: center;"><i class="icon-book"></i> Your Reading History</h2>
+            <button class="close-btn" id="closeBtn"><i class="icon-close"></i></button>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary">
+            <h3>Your Reading Journey</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>Total Books</h4>
+                    <p>142</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Pages Read</h4>
+                    <p>34,521</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Avg. Rating</h4>
+                    <p>4.2</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Genres</h4>
+                    <p>12</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book List -->
+        <div class="history-list">
+            <div class="history-item">
+                <div class="history-cover book-1">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>The Midnight Library</h3>
+                    <p>Matt Haig</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.5</span>
+                        <span class="history-date">Jun 15, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-2">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Atomic Habits</h3>
+                    <p>James Clear</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.8</span>
+                        <span class="history-date">May 28, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-3">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Project Hail Mary</h3>
+                    <p>Andy Weir</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.7</span>
+                        <span class="history-date">Apr 10, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-4">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Dune</h3>
+                    <p>Frank Herbert</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.6</span>
+                        <span class="history-date">Mar 22, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-5">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>The Seven Husbands of Evelyn Hugo</h3>
+                    <p>Taylor Jenkins Reid</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.9</span>
+                        <span class="history-date">Feb 14, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-6">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Where the Crawdads Sing</h3>
+                    <p>Delia Owens</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.5</span>
+                        <span class="history-date">Jan 30, 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-7">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>The Silent Patient</h3>
+                    <p>Alex Michaelides</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.3</span>
+                        <span class="history-date">Dec 18, 2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-8">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Educated</h3>
+                    <p>Tara Westover</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.7</span>
+                        <span class="history-date">Nov 5, 2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-9">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>The Song of Achilles</h3>
+                    <p>Madeline Miller</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.8</span>
+                        <span class="history-date">Oct 12, 2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-item">
+                <div class="history-cover book-10">
+                    <div class="history-badge">Completed</div>
+                </div>
+                <div class="history-info">
+                    <h3>Circe</h3>
+                    <p>Madeline Miller</p>
+                    <div class="history-meta">
+                        <span class="history-rating"><i class="icon-star"></i> 4.6</span>
+                        <span class="history-date">Sep 3, 2022</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const showHistoryBtn = document.getElementById('showHistoryBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.getElementById('closeBtn');
+
+        showHistoryBtn.addEventListener('click', function() {
+            modalOverlay.classList.add('active');
+            modalContent.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            modalContent.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modalOverlay.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
