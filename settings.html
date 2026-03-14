@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/settings.css">
+    
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><span class="icon-book"></span> <span>BookTrack</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon-dashboard"></span>
+                <span>Dashboard</span>
+            </a>
+            <a href="library.html" class="menu-item">
+                <span class="icon-library"></span>
+                <span>My Library</span>
+            </a>
+            <a href="reading-goals.html" class="menu-item">
+                <span class="icon-goals"></span>
+                <span>Reading Goals</span>
+            </a>
+            <a href="statistics.html" class="menu-item">
+                <span class="icon-stats"></span>
+                <span>Statistics</span>
+            </a>
+            <a href="settings.html" class="menu-item active">
+                <span class="icon-settings"></span>
+                <span>Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <h4>Jane Doe</h4>
+                    <p>Premium Member</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Settings</h1>
+                <p>Customize your BookTrack experience</p>
+            </div>
+            <div class="header-right">
+               
+                <div class="notifications">
+                    <span class="icon-bell"></span>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="sidebar-toggle" id="sidebarToggle">
+                    <span class="icon-book"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Container -->
+        <div class="settings-container">
+            <!-- Account Settings -->
+            <div class="settings-section" style="grid-column: span 8;">
+                <div class="settings-section-header">
+                    <h2><span class="icon-user"></span> Account Settings</h2>
+                    <span class="icon">👤</span>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><span class="icon-user"></span> Profile Information</h3>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" class="form-control" value="janedoe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" value="jane.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" class="form-control" rows="3">Avid reader, coffee enthusiast, and book collector</textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Save Changes</button>
+                            <button class="btn btn-outline">Cancel</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><span class="icon-palette"></span> Profile Appearance</h3>
+                        <div class="form-group">
+                            <label>Avatar</label>
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                <div class="user-avatar" style="width: 60px; height: 60px; font-size: 20px;">JD</div>
+                                <div>
+                                    <button class="btn btn-outline" style="padding: 8px 12px; font-size: 13px;">Change</button>
+                                    <button class="btn" style="padding: 8px 12px; font-size: 13px; background: transparent; color: var(--danger);">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Color Theme</label>
+                            <div class="color-picker">
+                                <div class="color-option selected" style="background-color: #ff2d75;"></div>
+                                <div class="color-option" style="background-color: #6c5ce7;"></div>
+                                <div class="color-option" style="background-color: #00b894;"></div>
+                                <div class="color-option" style="background-color: #0984e3;"></div>
+                                <div class="color-option" style="background-color: #e84393;"></div>
+                                <div class="color-option" style="background-color: #fdcb6e;"></div>
+                            </div>
+                            <div class="theme-preview">
+                                <div class="theme-preview-header">BookTrack</div>
+                                <div class="theme-preview-sidebar"></div>
+                                <div class="theme-preview-content">Your content here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+            
+            <!-- Preferences -->
+            <div class="settings-section" style="grid-column: span 6;">
+                <div class="settings-section-header">
+                    <h2><span class="icon-display"></span> Display Preferences</h2>
+                    <span class="icon">💻</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Theme</label>
+                    <div class="radio-group">
+                        <input type="radio" id="light-theme" name="theme" checked>
+                        <label for="light-theme">Light Theme</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="dark-theme" name="theme">
+                        <label for="dark-theme">Dark Theme</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="system-theme" name="theme">
+                        <label for="system-theme">Use System Preference</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="font-size">Font Size</label>
+                    <select id="font-size" class="form-control form-select">
+                        <option>Small</option>
+                        <option selected>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="density">Display Density</label>
+                    <select id="density" class="form-control form-select">
+                        <option>Compact</option>
+                        <option selected>Normal</option>
+                        <option>Comfortable</option>
+                    </select>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary">Save Preferences</button>
+                </div>
+            </div>
+            
+            <!-- Notifications -->
+            <div class="settings-section" style="grid-column: span 6;">
+                <div class="settings-section-header">
+                    <h2><span class="icon-notification"></span> Notifications</h2>
+                    <span class="icon">🔔</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Notifications</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-reading-reminders" checked>
+                        <label for="email-reading-reminders">Reading reminders</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-goal-updates" checked>
+                        <label for="email-goal-updates">Goal updates</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-recommendations">
+                        <label for="email-recommendations">Book recommendations</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-newsletter" checked>
+                        <label for="email-newsletter">Monthly newsletter</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Push Notifications</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="push-daily-reminders" checked>
+                        <label for="push-daily-reminders">Daily reading reminders</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="push-goal-progress" checked>
+                        <label for="push-goal-progress">Goal progress updates</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="push-streak-alerts">
+                        <label for="push-streak-alerts">Streak alerts</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notification-time">Daily Reminder Time</label>
+                    <select id="notification-time" class="form-control form-select">
+                        <option>Morning (7:00 AM)</option>
+                        <option selected>Afternoon (12:00 PM)</option>
+                        <option>Evening (6:00 PM)</option>
+                        <option>Night (9:00 PM)</option>
+                        <option>Custom...</option>
+                    </select>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary">Save Settings</button>
+                </div>
+            </div>
+            
+            <!-- Privacy -->
+            <div class="settings-section" style="grid-column: span 6;">
+                <div class="settings-section-header">
+                    <h2><span class="icon-privacy"></span> Privacy</h2>
+                    <span class="icon">🔒</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profile-visibility">Profile Visibility</label>
+                    <select id="profile-visibility" class="form-control form-select">
+                        <option selected>Public</option>
+                        <option>Friends Only</option>
+                        <option>Private</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Activity Sharing</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="share-reading-activity" checked>
+                        <label for="share-reading-activity">Share my reading activity</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="share-reading-goals" checked>
+                        <label for="share-reading-goals">Share my reading goals</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="share-book-ratings">
+                        <label for="share-book-ratings">Share my book ratings</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="data-sharing">Data Sharing for Recommendations</label>
+                    <select id="data-sharing" class="form-control form-select">
+                        <option selected>Full (better recommendations)</option>
+                        <option>Limited</option>
+                        <option>None</option>
+                    </select>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary">Update Privacy Settings</button>
+                </div>
+            </div>
+            
+           
+        </div>
+    </main>
+
+    <script src="assets/js/settings.js"></script>
+    <script>
+        // Minimal JavaScript only for sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.getElementById('mainContent').classList.toggle('expanded');
+        });
+
+       
+    </script>
+</body>
+</html>

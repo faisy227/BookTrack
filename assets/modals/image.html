@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background Image Preview</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .upload-section {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .background-preview {
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
+      margin: 0 auto;
+      border: 2px dashed #ccc;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 0.3s ease-in-out;
+    }
+
+    input[type="file"] {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload Image as Background</h2>
+  <div class="upload-section">
+    <input type="file" accept="image/*" id="upload" />
+  </div>
+  <div class="background-preview" id="previewBox">
+    <!-- Background image will show here -->
+  </div>
+
+  <script>
+    const uploadInput = document.getElementById("upload");
+    const previewBox = document.getElementById("previewBox");
+
+    uploadInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        previewBox.style.backgroundImage = `url('${e.target.result}')`;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
